@@ -219,8 +219,8 @@ namespace Peasy
     /// </summary>
     public class IfValidResponse
     {
-        private Func<bool> _validationFunction;
-        private Action<string> _invalidateFunction;
+        private readonly Func<bool> _validationFunction;
+        private readonly Action<string> _invalidateFunction;
 
         /// <summary>
         /// Initializes a new instance of the IfValidResponse class with a function to perform validation against and a function that invalidates the rule.
@@ -237,7 +237,7 @@ namespace Peasy
         /// <param name="errorMessage">Sets <see cref="RuleBase.ErrorMessage"/>.</param>
         public Task ThenInvalidateWith(string errorMessage)
         {
-            if (_validationFunction() == true) _invalidateFunction(errorMessage);
+            if (_validationFunction()) _invalidateFunction(errorMessage);
             return Task.FromResult<object>(null);
         }
     }
@@ -247,8 +247,8 @@ namespace Peasy
     /// </summary>
     public class IfNotValidResponse
     {
-        private Func<bool> _validationFunction;
-        private Action<string> _invalidateFunction;
+        private readonly Func<bool> _validationFunction;
+        private readonly Action<string> _invalidateFunction;
 
         /// <summary>
         /// Initializes a new instance of the IfNotValidResponse class with a function to perform validation against and a function that invalidates the rule.
